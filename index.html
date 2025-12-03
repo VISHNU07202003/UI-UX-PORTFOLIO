@@ -3,95 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UX Designer Portfolio</title>
+    <title>Vishnu Sai Padyala | Computer Science Student</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
-            --mustang-orange: #FF6B2C;
-            --dark-gray: #1a1a1a;
-            --medium-gray: #2d2d2d;
-            --light-gray: #4a4a4a;
-            --text-gray: #cccccc;
-            --black: #0a0a0a;
+            --netflix-red: #E50914;
+            --netflix-black: #141414;
+            --netflix-dark: #0a0a0a;
+            --netflix-gray: #2f2f2f;
+            --netflix-light-gray: #808080;
+            --netflix-white: #ffffff;
         }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--black) 0%, var(--dark-gray) 100%);
-            color: var(--text-gray);
+            font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--netflix-black);
+            color: var(--netflix-white);
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* Racing Stripes Background */
+        /* Subtle gradient overlay */
         body::before {
             content: '';
             position: fixed;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, 
-                transparent 0%, 
-                rgba(255, 107, 44, 0.03) 50%, 
-                transparent 100%);
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 10, 0.8) 100%);
             pointer-events: none;
             z-index: 0;
         }
-
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            padding: 1.5rem 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--mustang-orange);
-            box-shadow: 0 4px 20px rgba(255, 107, 44, 0.3);
+            transition: background 0.3s ease;
         }
-
+        nav.scrolled {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 9, 20, 0.3);
+        }
         nav .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--mustang-orange);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--netflix-red);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(255, 107, 44, 0.5);
+            letter-spacing: -1px;
+            transition: all 0.3s ease;
         }
-
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+        }
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
-
         nav a {
-            color: var(--text-gray);
+            color: var(--netflix-white);
             text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 500;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
             position: relative;
         }
-
         nav a::after {
             content: '';
             position: absolute;
@@ -99,157 +92,132 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--mustang-orange);
+            background: var(--netflix-red);
             transition: width 0.3s ease;
         }
-
         nav a:hover {
-            color: var(--mustang-orange);
+            color: var(--netflix-red);
         }
-
-        nav a:hover::after {
+        nav a:hover::after,
+        nav a.active::after {
             width: 100%;
         }
-
         /* Menu Toggle */
         .menu-toggle {
             display: none;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
             cursor: pointer;
         }
-
         .menu-toggle span {
-            width: 25px;
+            width: 28px;
             height: 3px;
-            background: var(--mustang-orange);
+            background: var(--netflix-white);
             transition: all 0.3s ease;
         }
-
-        /* Hero Section with Profile */
+        .menu-toggle:hover span {
+            background: var(--netflix-red);
+        }
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 8rem 2rem 2rem;
+            padding: 8rem 2rem 4rem;
             position: relative;
+            background: linear-gradient(180deg, var(--netflix-dark) 0%, var(--netflix-black) 100%);
         }
-
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, transparent 0%, var(--netflix-red) 50%, transparent 100%);
+            opacity: 0.5;
+        }
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             animation: fadeInUp 1s ease;
+            position: relative;
+            z-index: 1;
         }
-
         /* Profile Section */
         .profile-section {
             margin-bottom: 3rem;
         }
-
         .profile-image-container {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             margin: 0 auto 2rem;
         }
-
         .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 4px solid var(--mustang-orange);
-            box-shadow: 0 0 40px rgba(255, 107, 44, 0.5),
-                        inset 0 0 20px rgba(255, 107, 44, 0.2);
+            width: 180px;
+            height: 180px;
+            border-radius: 4px;
+            border: 3px solid var(--netflix-red);
+            box-shadow: 0 4px 30px rgba(229, 9, 20, 0.4);
             object-fit: cover;
-            background: linear-gradient(135deg, var(--medium-gray) 0%, var(--light-gray) 100%);
+            background: var(--netflix-gray);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            color: var(--mustang-orange);
-            animation: profilePulse 3s ease-in-out infinite;
+            color: var(--netflix-red);
+            transition: all 0.3s ease;
         }
-
-        @keyframes profilePulse {
-            0%, 100% {
-                box-shadow: 0 0 40px rgba(255, 107, 44, 0.5),
-                            inset 0 0 20px rgba(255, 107, 44, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 60px rgba(255, 107, 44, 0.8),
-                            inset 0 0 30px rgba(255, 107, 44, 0.3);
-            }
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 40px rgba(229, 9, 20, 0.6);
         }
-
         .profile-ring {
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid var(--mustang-orange);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: ringPulse 2s ease-in-out infinite;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            border: 2px solid var(--netflix-red);
+            border-radius: 4px;
+            opacity: 0.2;
         }
-
-        @keyframes ringPulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.1;
-            }
-        }
-
         .profile-info h1 {
             font-size: 3.5rem;
-            color: #fff;
+            color: var(--netflix-white);
             margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 30px rgba(255, 107, 44, 0.5);
+            font-weight: 900;
+            letter-spacing: -2px;
         }
-
         .profile-title {
-            font-size: 1.5rem;
-            color: var(--mustang-orange);
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            color: var(--netflix-red);
+            margin-bottom: 1rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
-
         .profile-education {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
-
         .profile-education-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: var(--text-gray);
-            font-size: 1.1rem;
+            color: var(--netflix-light-gray);
+            font-size: 1rem;
+            font-weight: 500;
         }
-
         .profile-education-item::before {
             content: '🎓';
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
-
-        .separator {
-            color: var(--mustang-orange);
-            font-weight: bold;
-        }
-
         .profile-specialization {
             display: flex;
             justify-content: center;
@@ -257,126 +225,96 @@
             flex-wrap: wrap;
             margin-bottom: 2rem;
         }
-
         .specialization-tag {
-            padding: 0.5rem 1.5rem;
-            background: var(--medium-gray);
-            border: 2px solid var(--mustang-orange);
-            border-left: 4px solid var(--mustang-orange);
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 0.6rem 1.5rem;
+            background: rgba(229, 9, 20, 0.1);
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            border-radius: 4px;
+            color: var(--netflix-white);
+            font-size: 0.9rem;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
-
         .specialization-tag:hover {
-            background: var(--mustang-orange);
-            color: var(--black);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(255, 107, 44, 0.4);
+            background: var(--netflix-red);
+            border-color: var(--netflix-red);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
         }
-
         .hero .tagline {
             font-size: 1.2rem;
             margin-bottom: 3rem;
-            color: var(--text-gray);
+            color: var(--netflix-light-gray);
             line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         /* Buttons */
         .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: var(--mustang-orange);
-            color: var(--black);
+            background: var(--netflix-red);
+            color: var(--netflix-white);
             text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 1rem;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 107, 44, 0.4);
         }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 30px rgba(255, 107, 44, 0.6);
+            background: #f40612;
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.4);
         }
-
         .btn-secondary {
             background: transparent;
-            color: var(--mustang-orange);
-            border: 2px solid var(--mustang-orange);
+            color: var(--netflix-white);
+            border: 2px solid var(--netflix-white);
             margin-left: 1rem;
         }
-
         .btn-secondary:hover {
-            background: var(--mustang-orange);
-            color: var(--black);
+            background: var(--netflix-white);
+            color: var(--netflix-black);
+            border-color: var(--netflix-white);
         }
-
         /* Sections */
         section {
             padding: 6rem 2rem;
             position: relative;
+            z-index: 1;
         }
-
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
-
         h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             text-align: center;
             margin-bottom: 1rem;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            position: relative;
-            /*display: inline-block;*/
-            left: 50%;
-            transform: translateX(-50%);
+            color: var(--netflix-white);
+            font-weight: 700;
+            letter-spacing: -1px;
         }
-
         h2::after {
             content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 500px;
+            display: block;
+            width: 80px;
             height: 4px;
-            background: var(--mustang-orange);
-            box-shadow: 0 0 10px var(--mustang-orange);
+            background: var(--netflix-red);
+            margin: 1rem auto 0;
         }
-
         .section-subtitle {
             text-align: center;
-            color: var(--text-gray);
+            color: var(--netflix-light-gray);
             margin-bottom: 4rem;
             font-size: 1.1rem;
         }
-
         /* Projects Grid */
         .projects-grid {
             display: grid;
@@ -384,187 +322,192 @@
             gap: 2rem;
             margin-top: 3rem;
         }
-
         .project-card {
-            background: var(--medium-gray);
-            border: 2px solid var(--light-gray);
+            background: var(--netflix-gray);
+            border-radius: 8px;
             overflow: hidden;
             transition: all 0.3s ease;
             position: relative;
         }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--mustang-orange);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
         .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--mustang-orange);
-            box-shadow: 0 10px 40px rgba(255, 107, 44, 0.3);
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
         }
-
         .project-image {
             width: 100%;
             height: 250px;
-            background: var(--light-gray);
+            background: linear-gradient(135deg, var(--netflix-dark) 0%, var(--netflix-gray) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--mustang-orange);
+            font-size: 4rem;
             position: relative;
             overflow: hidden;
         }
-
-        .project-image::after {
+        .project-image::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255, 107, 44, 0.1) 0%, transparent 100%);
+            background: linear-gradient(180deg, transparent 0%, rgba(229, 9, 20, 0.1) 100%);
         }
-
         .project-content {
             padding: 2rem;
         }
-
         .project-role {
-            color: var(--mustang-orange);
-            font-size: 0.9rem;
+            color: var(--netflix-red);
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
-
         .project-card h3 {
-            color: #fff;
+            color: var(--netflix-white);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            font-weight: 700;
         }
-
+        .project-card p {
+            color: var(--netflix-light-gray);
+            line-height: 1.6;
+        }
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
-
         .tag {
-            padding: 0.3rem 1rem;
-            background: var(--light-gray);
-            color: var(--text-gray);
-            font-size: 0.85rem;
-            border-left: 2px solid var(--mustang-orange);
+            padding: 0.4rem 1rem;
+            background: rgba(229, 9, 20, 0.1);
+            color: var(--netflix-white);
+            font-size: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid rgba(229, 9, 20, 0.2);
         }
-
         /* Skills Section */
+        #skills {
+            background: var(--netflix-dark);
+        }
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
-
         .skill-category {
-            background: var(--medium-gray);
-            padding: 2rem;
-            border: 2px solid var(--light-gray);
-            border-left: 4px solid var(--mustang-orange);
+            background: var(--netflix-gray);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--netflix-red);
             transition: all 0.3s ease;
         }
-
         .skill-category:hover {
-            border-color: var(--mustang-orange);
-            transform: translateX(10px);
-            box-shadow: -5px 0 20px rgba(255, 107, 44, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
-
         .skill-category h3 {
-            color: var(--mustang-orange);
-            margin-bottom: 1rem;
+            color: var(--netflix-red);
+            margin-bottom: 1.5rem;
             font-size: 1.3rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-weight: 700;
         }
-
         .skill-category ul {
             list-style: none;
         }
-
         .skill-category li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--light-gray);
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            color: var(--netflix-light-gray);
         }
-
+        .skill-category li:last-child {
+            border-bottom: none;
+        }
         .skill-category li:hover {
-            color: var(--mustang-orange);
+            color: var(--netflix-white);
             padding-left: 10px;
         }
-
         /* Contact Section */
         .contact {
-            background: var(--medium-gray);
-            border-top: 4px solid var(--mustang-orange);
+            background: linear-gradient(180deg, var(--netflix-black) 0%, var(--netflix-dark) 100%);
+            border-top: 1px solid rgba(229, 9, 20, 0.3);
         }
-
         .contact-content {
             text-align: center;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
-
+        .contact-content p {
+            color: var(--netflix-light-gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
             margin: 3rem 0;
         }
-
         .social-links a {
             width: 60px;
             height: 60px;
-            background: var(--light-gray);
-            color: var(--text-gray);
+            background: var(--netflix-gray);
+            color: var(--netflix-white);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             font-size: 1.5rem;
+            font-weight: bold;
             transition: all 0.3s ease;
-            border: 2px solid var(--light-gray);
+            border-radius: 4px;
+            border: 2px solid transparent;
         }
-
         .social-links a:hover {
-            background: var(--mustang-orange);
-            color: var(--black);
-            border-color: var(--mustang-orange);
+            background: var(--netflix-red);
+            border-color: var(--netflix-red);
             transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(255, 107, 44, 0.4);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
         }
-
         /* Footer */
         footer {
-            background: var(--black);
+            background: var(--netflix-dark);
             text-align: center;
             padding: 2rem;
-            border-top: 2px solid var(--mustang-orange);
+            border-top: 1px solid rgba(229, 9, 20, 0.3);
+            color: var(--netflix-light-gray);
         }
-
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--netflix-red);
+            color: var(--netflix-white);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            z-index: 999;
+            font-weight: bold;
+        }
+        .scroll-top:hover {
+            background: #f40612;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+        }
+        .scroll-top.show {
+            display: flex;
+        }
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -576,103 +519,68 @@
                 transform: translateY(0);
             }
         }
-
         /* Responsive */
         @media (max-width: 768px) {
+            nav .container {
+                padding: 0 2rem;
+            }
             .menu-toggle {
                 display: flex;
             }
-
             nav ul {
                 position: fixed;
                 top: 70px;
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 70px);
-                background: rgba(26, 26, 26, 0.98);
+                background: rgba(20, 20, 20, 0.98);
+                backdrop-filter: blur(10px);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 transition: left 0.3s ease;
+                gap: 2rem;
             }
-
             nav ul.active {
                 left: 0;
             }
-
             .profile-info h1 {
                 font-size: 2.5rem;
             }
-
             .profile-image-container {
                 width: 150px;
                 height: 150px;
             }
-
             .profile-image {
                 width: 150px;
                 height: 150px;
                 font-size: 3rem;
             }
-
             h2 {
                 font-size: 2rem;
             }
-
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-
             .btn-secondary {
                 margin-left: 0;
                 margin-top: 1rem;
             }
-
             .profile-education {
                 flex-direction: column;
                 gap: 0.5rem;
             }
-
-            .separator {
-                display: none;
+            .container {
+                padding: 0 1rem;
             }
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--mustang-orange);
-            color: var(--black);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--mustang-orange);
-            z-index: 999;
-        }
-
-        .scroll-top:hover {
-            background: transparent;
-            color: var(--mustang-orange);
-            transform: translateY(-5px);
-        }
-
-        .scroll-top.show {
-            display: flex;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <div class="container">
-            <div class="logo">MY PORTFOLIO</div>
+            <div class="logo">PORTFOLIO</div>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -680,194 +588,232 @@
             </div>
             <ul id="navMenu">
                 <li><a href="#home" onclick="closeMenu()">Home</a></li>
-                <li><a href="#work" onclick="closeMenu()">Work</a></li>
+                <li><a href="#work" onclick="closeMenu()">Projects</a></li>
                 <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
                 <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section with Profile -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="profile-section">
                 <div class="profile-image-container">
                     <div class="profile-ring"></div>
-                    <img src="profile.jpg" alt="Your Name" class="profile-image" style="object-fit: cover;">
+                    <img src="profile.jpg" alt="Vishnu Sai Padyala" class="profile-image" style="object-fit: cover;">
                 </div>
-                
                 <div class="profile-info">
                     <h1>VISHNU SAI PADYALA</h1>
-                    <div class="profile-title">UX Designer</div>
-                    
+                    <div class="profile-title">Computer Science Student</div>
                     <div class="profile-education">
                         <div class="profile-education-item">
-                            UNIVERSITY OF FLORIDA
+                            University of Florida • MS Computer Science
                         </div>
-                
                     </div>
-
                     <div class="profile-specialization">
-                        <div class="specialization-tag">Software Developer</div>
-                        <div class="specialization-tag">User Research</div>
-                        <div class="specialization-tag">AI Specialist</div>
+                        <div class="specialization-tag">Web Development</div>
+                        <div class="specialization-tag">Data Visualization</div>
+                        <div class="specialization-tag">Machine Learning</div>
                     </div>
                 </div>
             </div>
-
-            <p class="tagline">Crafting high-octane user experiences that accelerate business success. Every pixel tuned for maximum impact and performance.</p>
-            
-            <a href="#work" class="btn">View My Work</a>
+            <p class="tagline">Passionate about building interactive web applications and creating meaningful user experiences. Currently exploring data visualization, full-stack development, and machine learning through hands-on projects.</p>
+            <a href="#work" class="btn">View My Projects</a>
             <a href="#contact" class="btn btn-secondary">Get In Touch</a>
         </div>
     </section>
 
-<!-- Work Section -->
-<section id="work">
-    <div class="container">
-        <h2>Featured Work</h2>
-        <p class="section-subtitle">Projects engineered for speed, usability, and intelligence</p>
-        
-        <div class="projects-grid">
+    <!-- Work Section -->
+    <section id="work">
+        <div class="container">
+            <h2>Academic Projects</h2>
+            <p class="section-subtitle">Learning by building real-world applications</p>
+            <div class="projects-grid">
+                <!-- Yelp Analytics Dashboard -->
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <div class="project-role">Academic Project</div>
+                        <h3>Yelp Data Analytics Dashboard</h3>
+                        <p>Built a web-based analytics platform to visualize patterns in Yelp review data. Learned React and D3.js to create interactive charts and implemented a Node.js backend for data processing.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Python</span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Software Developer -->
-            <div class="project-card">
-                <div class="project-image">📱</div>
-                <div class="project-content">
-                    <div class="project-role">Software Developer</div>
-                    <h3>University Services Mobile App</h3>
-                    <p>Built a cross-platform app for 5,000+ students with authentication, course registration, and announcements. Optimized database queries, reducing latency by 25%, and implemented CI/CD pipelines for seamless deployment.</p>
-                    <div class="project-tags">
-                        <span class="tag">Full-Stack</span>
-                        <span class="tag">React Native</span>
-                        <span class="tag">Kotlin</span>
+                <!-- University App Intern Project -->
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <div class="project-role">Internship Project</div>
+                        <h3>University Services Mobile App</h3>
+                        <p>Contributed to a mobile app development project during my internship at VIT-AP. Worked with React Native and created dashboard components with real-time data visualization using Chart.js.</p>
+                        <div class="project-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Chart.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COVID Visualization -->
+                <div class="project-card">
+                    <div class="project-image">🌍</div>
+                    <div class="project-content">
+                        <div class="project-role">Personal Project</div>
+                        <h3>COVID-19 Data Visualization</h3>
+                        <p>Created an interactive web app to explore global COVID-19 trends using React and D3.js. Focused on making complex data accessible through intuitive visualizations like maps and animated charts.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">REST APIs</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ML Project -->
+                <div class="project-card">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <div class="project-role">Course Project</div>
+                        <h3>ML Model Performance Dashboard</h3>
+                        <p>Developed a dashboard to visualize machine learning model performance metrics. Used React and Recharts to display confusion matrices and accuracy curves in an easy-to-understand format.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Recharts</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">TensorFlow</span>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- UI/UX Designer -->
-            <div class="project-card">
-                <div class="project-image">🎨</div>
-                <div class="project-content">
-                    <div class="project-role">UI/UX Designer</div>
-                    <h3>Snack Squad Android App</h3>
-                    <p>Designed and developed an intuitive snack-ordering app with Jetpack Compose. Enhanced usability and UI/UX, boosting pilot satisfaction scores by 30% and ensuring smooth user journeys for mobile interactions.</p>
-                    <div class="project-tags">
-                        <span class="tag">UI/UX Design</span>
-                        <span class="tag">Jetpack Compose</span>
-                        <span class="tag">User Testing</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI Scientist -->
-            <div class="project-card">
-                <div class="project-image">🤖</div>
-                <div class="project-content">
-                    <div class="project-role">AI Scientist</div>
-                    <h3>Federated Learning for Anomaly Detection</h3>
-                    <p>Developed a privacy-preserving AI pipeline with FedAvg, achieving 91% anomaly detection accuracy across 10k+ simulated clients. Optimized communication and model aggregation for scalable, real-time AI deployment.</p>
-                    <div class="project-tags">
-                        <span class="tag">Machine Learning</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Federated Learning</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Skills Section -->
-<section id="skills">
-    <div class="container">
-        <h2>Skills & Expertise</h2>
-        <p class="section-subtitle">Technologies and techniques for scalable, high-impact solutions</p>
-        
-        <div class="skills-grid">
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <p class="section-subtitle">Technologies I'm learning and working with</p>
+            <div class="skills-grid">
+                <!-- Programming Languages -->
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>JavaScript (ES6+)</li>
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>SQL</li>
+                        <li>HTML5/CSS3</li>
+                    </ul>
+                </div>
 
-            <!-- Software & Development -->
-            <div class="skill-category">
-                <h3>Development</h3>
-                <ul>
-                    <li>Full-Stack Development</li>
-                    <li>Mobile App Development</li>
-                    <li>REST API Design</li>
-                    <li>CI/CD Pipelines</li>
-                </ul>
+                <!-- Web Development -->
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <ul>
+                        <li>React & React Native</li>
+                        <li>Node.js & Express</li>
+                        <li>D3.js & Chart.js</li>
+                        <li>REST APIs</li>
+                        <li>Responsive Design</li>
+                    </ul>
+                </div>
+
+                <!-- Data & Visualization -->
+                <div class="skill-category">
+                    <h3>Data & Visualization</h3>
+                    <ul>
+                        <li>Data Visualization</li>
+                        <li>Pandas & NumPy</li>
+                        <li>Matplotlib & Seaborn</li>
+                        <li>Tableau</li>
+                        <li>SQL Databases</li>
+                    </ul>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>VS Code</li>
+                        <li>MySQL & PostgreSQL</li>
+                        <li>MongoDB</li>
+                        <li>Figma</li>
+                    </ul>
+                </div>
+
+                <!-- Concepts -->
+                <div class="skill-category">
+                    <h3>Learning Focus</h3>
+                    <ul>
+                        <li>Full-Stack Development</li>
+                        <li>UI/UX Design</li>
+                        <li>Machine Learning Basics</li>
+                        <li>Agile Methodologies</li>
+                        <li>Data Structures & Algorithms</li>
+                    </ul>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Team Collaboration</li>
+                        <li>Problem Solving</li>
+                        <li>Quick Learner</li>
+                        <li>Communication</li>
+                        <li>Time Management</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- UI/UX & Design -->
-            <div class="skill-category">
-                <h3>UI/UX & Design</h3>
-                <ul>
-                    <li>Wireframing & Prototyping</li>
-                    <li>User Research & Testing</li>
-                    <li>Design Systems</li>
-                    <li>Interaction Design</li>
-                </ul>
-            </div>
-
-            <!-- Machine Learning & AI -->
-            <div class="skill-category">
-                <h3>AI & Machine Learning</h3>
-                <ul>
-                    <li>Python & TensorFlow</li>
-                    <li>Federated Learning</li>
-                    <li>Data Engineering & Analytics</li>
-                    <li>Deep Learning Models</li>
-                </ul>
-            </div>
-
-            <!-- Tools & Methods -->
-            <div class="skill-category">
-                <h3>Tools & Methods</h3>
-                <ul>
-                    <li>React, React Native, Jetpack Compose</li>
-                    <li>SQL, MongoDB, PostgreSQL</li>
-                    <li>Agile/Scrum & Git Workflows</li>
-                    <li>Jira, VS Code, IntelliJ</li>
-                </ul>
-            </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="contact-content">
                 <h2>Let's Connect</h2>
-                <p class="section-subtitle">Ready to accelerate your next project? Let's talk.</p>
-                <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to connect, feel free to reach out.</p>
-                
+                <p class="section-subtitle">Open to internship opportunities and collaboration</p>
+                <p>I'm actively seeking internship opportunities where I can apply my skills and continue learning. If you're interested in working together or just want to chat about tech, feel free to reach out!</p>
                 <div class="social-links">
-                    <a href="https://mail.google.com/mail/?view=cm&to=padyalavishnusai@gmail.com" 
-   target="_blank" 
-   title="Email">✉</a>
-
+                    <a href="mailto:padyalavishnusai@ufl.edu" title="Email">✉</a>
                     <a href="https://www.linkedin.com/in/vishnu-sai-padyala-95317b24b/" target="_blank" title="LinkedIn">in</a>
-                    <a href="https://github.com/VISHNU07202003?tab=repositories" target="_blank" title="GitHub">Git</a>
-                    
+                    <a href="https://github.com/VISHNU07202003?tab=repositories" target="_blank" title="GitHub">⌘</a>
                 </div>
-
-                <a href="sms:+1813456587" class="btn">Send Message</a>
-
+                <a href="mailto:padyalavishnusai@ufl.edu" class="btn">Send Message</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Your Name. Built for speed and performance.</p>
+        <p>&copy; 2025 Vishnu Sai Padyala. All rights reserved.</p>
     </footer>
 
     <!-- Scroll to Top Button -->
     <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</div>
 
     <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
         // Mobile Menu Toggle
         function toggleMenu() {
             const menu = document.getElementById('navMenu');
@@ -895,7 +841,6 @@
 
         // Scroll to Top Button
         const scrollTopBtn = document.getElementById('scrollTop');
-        
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 scrollTopBtn.classList.add('show');
@@ -915,8 +860,8 @@
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('nav a');
-            
             let current = '';
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
